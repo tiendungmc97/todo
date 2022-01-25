@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "./ext/log";
-import "lib/express"
-import { MongoCommon } from "./lib/mongodb"
+import "./lib/express";
+import { MongoCommon } from "./lib/mongodb";
 import { ContextBLLBase } from "./ext/ctx.bll";
 
 import { TodoDalMongo } from "./todo/todo.dal.mongo";

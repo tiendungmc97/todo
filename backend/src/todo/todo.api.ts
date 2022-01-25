@@ -1,5 +1,5 @@
 import express from "express"
-import { HttpParamValidators } from "../src/lib/http";
+import { HttpParamValidators } from "../lib/http";
 import { TodoNS } from "./todo.ns";
 
 export function NewTodoApi(todoBLL: TodoNS.BLL) {

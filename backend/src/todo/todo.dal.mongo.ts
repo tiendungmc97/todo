@@ -1,4 +1,4 @@
-import { FromMongoData, MongoDB, ToMongoData, MongoModel} from "../src/lib/mongodb";
+import { FromMongoData, MongoDB, ToMongoData, MongoModel} from "../lib/mongodb";
 import { TodoNS } from "./todo.ns";
 export class TodoDalMongo implements TodoNS.DAL {
     constructor(private db: MongoDB) { }

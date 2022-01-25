@@ -1,0 +1,17 @@
+header {
+    height: 66px;
+}
+.tabs {
+    button {        
+        margin: 0px;
+        padding: 20px;       
+    }
+    .active {
+        background-color: red;
+    }
+    a {
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+    }
+}
