@@ -12,6 +12,9 @@ import { NewTodoApi } from "./todo/todo.api";
 
 import { ReadConfig } from "./config";
 import { HttpErrorHandler } from "./ext/http_error_handler";
+import { CustomerDalMongo } from "./customer/customer.dal.mongo";
+import { CustomerBllBase } from "./customer/customer.bll.base";
+import { NewCustomerApi } from "./customer/customer.api";
 
 async function main() {
     const config = await ReadConfig();
@@ -20,12 +23,15 @@ async function main() {
     console.log('connected to database');
     const database = client.db(config.database.db_name);
     //*********************************************************************//
-    const contextBLL = new ContextBLLBase(client);
-
     const todoDal = new TodoDalMongo(database);
     await todoDal.init();
     const todoBll = new TodoBllBase(todoDal);
     await todoBll.init();
+    
+    const customerDal = new CustomerDalMongo(database);
+    await customerDal.init();
+    const customerBll = new CustomerBllBase(customerDal);
+    await customerBll.init();
 
     //*********************************************************************//
     const app = express();
@@ -34,6 +40,7 @@ async function main() {
     app.use(cors());
     ////////////////////////////////////////////////////////////////////////
     app.use("/api/todo", NewTodoApi(todoBll));
+    app.use("/api/customer", NewCustomerApi(customerBll));
 
     app.use(HttpErrorHandler);
     console.log(`Listen on ${config.server.port}`);
